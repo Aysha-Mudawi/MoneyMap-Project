@@ -213,3 +213,24 @@ label {
     width: 100%;
   }
 }
+
+.amount-input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.currency-symbol {
+  padding-left: 10px;
+  color: #555;
+}
+
+.amount-input-wrapper input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+}

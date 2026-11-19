@@ -10,6 +10,8 @@ const expenseDateInput = document.querySelector("#expense-date");
 const expensesTableBody = document.querySelector("#expenses-table-body");
 const totalSpendingElement = document.querySelector("#total-spending");
 
+let totalSpending = 0;
+
 expenseForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const amount = Number(expenseAmountInput.value);
@@ -43,7 +45,26 @@ expenseForm.addEventListener("submit", function (event) {
   dateCell.textContent = expense.date;
   expenseRow.appendChild(dateCell);
 
+  const deleteCell = document.createElement("td");
+  const deleteButton = document.createElement("button");
+
+  deleteButton.type = "button";
+  deleteButton.textContent = "Delete";
+
+  deleteButton.addEventListener("click", function () {
+    expenseRow.remove();
+
+    totalSpending -= expense.amount;
+
+    totalSpendingElement.textContent = `$${totalSpending.toFixed(2)}`;
+  });
+  expenseForm.reset();
+  deleteCell.appendChild(deleteButton);
+  expenseRow.appendChild(deleteCell);
+
   expensesTableBody.appendChild(expenseRow);
+  totalSpending += expense.amount;
+  totalSpendingElement.textContent = `$${totalSpending.toFixed(2)}`;
 
   console.log(amount);
   console.log(expenseCategoryInput.value);
